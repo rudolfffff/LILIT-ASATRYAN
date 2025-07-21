@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LILIT ASATRYAN gnaceq dashnamur parapelu</title>
+<style>
+  /* ======== ОБЩИЕ СТИЛИ ======== */
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    background: linear-gradient(135deg, #23074d, #cc5333);
+    font-family: 'Press Start 2P', cursive, monospace;
+    color: #ffd6d6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    background: #220033dd;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #ff3366;
+    user-select: none;
+  }
+  nav {
+    background: #330055ee;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 0;
+    gap: 10px;
+  }
+  nav button {
+    background: #ff3366;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    text-shadow: 0 0 6px #fff;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #ff3366;
+  }
+  nav button:hover {
+    background: #ff6699;
+    box-shadow: 0 0 20px #ff6699;
+  }
+  .container {
+    max-width: 960px;
+    margin: 30px auto;
+    background: #330022dd;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 50px #cc3366cc inset;
+  }
+  .hidden {
+    display: none;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #ff99aa;
+    text-shadow: 0 0 8px #ff6699;
+  }
+
+  /* ======== ЗМЕЙКА ======== */
+  #snake-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #snake-canvas {
+    background: #110011;
+    border: 4px solid #ff3366;
+    border-radius: 12px;
+  }
+  #snake-score {
+    color: #ff99aa;
+    font-size: 1rem;
+    margin-top: 10px;
+    text-shadow: 0 0 8px #ff3366;
+  }
+  #snake-controls {
+    margin-top: 10px;
+  }
+  #snake-controls button {
+    background: #551144;
+    border: 2px solid #ff4477;
+    color: #ffaabb;
+    font-weight: 700;
+    padding: 8px 16px;
+    margin: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  #snake-controls button:hover {
+    background: #ff4477;
+    color: #330011;
+  }
+
+  /* ======== ПИАНИНО ======== */
+  #piano-game {
+    text-align: center;
+  }
+  #piano-keys {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+  }
+  .piano-key {
+    width: 40px;
+    height: 160px;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 0 0 8px 8px;
+    box-shadow: inset 0 -5px 8px #aaa;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .piano-key:active {
+    background: #ff6699;
+    box-shadow: inset 0 2px 10px #dd3355;
+  }
+  .piano-key.black {
+    width: 28px;
+    height: 110px;
+    background: #220022;
+    border-radius: 0 0 6px 6px;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    z-index: 10;
+    box-shadow: 0 5px 6px #000;
+    cursor: pointer;
+  }
+  #piano-container {
+    position: relative;
+    width: 340px;
+    margin: 0 auto;
+    height: 160px;
+  }
+
+  /* ======== ГИТАРА ======== */
+  #guitar-game {
+    text-align: center;
+  }
+  #guitar-types {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .guitar-btn {
+    background: #ff3366;
+    border: none;
+    color: white;
+    font-weight: 800;
+    border-radius: 10px;
+    padding: 10px 18px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff6699;
+    transition: 0.3s;
+  }
+  .guitar-btn:hover {
+    background: #ff99aa;
+    color: #330011;
+  }
+  #guitar-chord {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #ff99aa;
+    text-shadow: 0 0 12px #ff3366;
+  }
+
+  /* ======== КЛИКЕР ======== */
+  #clicker-game {
+    text-align: center;
+  }
+  #clicker-button {
+    font-size: 2rem;
+    padding: 25px 50px;
+    border-radius: 15px;
+    background: #ff3377;
+    border: none;
+    color: white;
+    box-shadow: 0 0 20px #ff5588;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  #clicker-button:hover {
+    background: #ff5599;
+  }
+  #clicker-score {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    color: #ff99aa;
+  }
+
+  /* ======== ВЫБОР ИНТЕРФЕЙСА ======== */
+  #interface-choice {
+    margin-top: 25px;
+    text-align: center;
+  }
+  #interface-choice button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background: #ff3366;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff4477;
+    transition: 0.3s;
+  }
+  #interface-choice button:hover {
+    background: #ff99aa;
+    color: #330011;
+  }
+
+  /* ======== ЮМОР ======== */
+  #jokes {
+    max-width: 600px;
+    margin: 30px auto 0;
+    background: #440022dd;
+    border-radius: 15px;
+    padding: 15px;
+    color: #ffccddee;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-shadow: 0 0 6px #ff6699;
+  }
+  #jokes h3 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ======== АНИМАЦИИ ======== */
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 6px #ff4477, 0 0 20px #ff2244; }
+    50% { text-shadow: 0 0 20px #ff6699, 0 0 30px #ff3377; }
+  }
+  nav button {
+    animation: glow 3s infinite;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  LILIT ASATRYAN gnaceq dashnamur parapelu
+</header>
+
+<nav>
+  <button data-game="snake">Zmeyka</button>
+  <button data-game="piano">Piano</button>
+  <button data-game="guitar">Guitar</button>
+  <button data-game="clicker">Clicker</button>
+  <button data-game="interface">Interface</button>
+  <button data-game="jokes">Slipknot Jokes</button>
+</nav>
+
+<div class="container">
+
+  <!-- ЗМЕЙКА -->
+  <section id="snake-game" class="hidden">
+    <h2>Zmeyka (Snake)</h2>
+    <canvas id="snake-canvas" width="320" height="320"></canvas>
+    <div id="snake-score">Score: 0</div>
+    <div id="snake-controls">
+      <button id="snake-start">Start</button>
+      <button id="snake-pause">Pause</button>
+      <button id="snake-reset">Reset</button>
+    </div>
+  </section>
+
+  <!-- ПИАНИНО -->
+  <section id="piano-game" class="hidden">
+    <h2>Piano</h2>
+    <div id="piano-container">
+      <div id="piano-keys"></div>
+    </div>
+    <small>Используйте мышь или клавиши клавиатуры: A S D F G H J</small>
+  </section>
+
+  <!-- ГИТАРА -->
+  <section id="guitar-game" class="hidden">
+    <h2>Guitar Simulator</h2>
+    <div id="guitar-types">
+      <button class="guitar-btn" data-type="electric">Electric</button>
+      <button class="guitar-btn" data-type="bass">Bass</button>
+      <button class="guitar-btn" data-type="acoustic">Acoustic</button>
+    </div>
+    <div id="guitar-chord">Выберите тип и играйте аккорд!</div>
+    <div>
+      <button id="play-chord">Play Chord</button>
+    </div>
+  </section>
+
+  <!-- КЛИКЕР -->
+  <section id="clicker-game" class="hidden">
+    <h2>Clicker</h2>
+    <button id="clicker-button">НАЖМИ МЕНЯ</button>
+    <div id="clicker-score">Очки: 0</div>
+  </section>
+
+  <!-- ВЫБОР ИНТЕРФЕЙСА -->
+  <section id="interface-choice" class="hidden">
+    <h2>Выбор интерфейса</h2>
+    <button data-theme="dark">Тёмный</button>
+    <button data-theme="light">Светлый</button>
+    <button data-theme="neon">Неоновый</button>
+  </section>
+
+  <!-- ЮМОР -->
+  <section id="jokes" class="hidden">
+    <h3>Slipknot & Type O Negative i het kapvac havayi tapak humorner</h3>
+    <p>gites inch klni ete LILIT ASATRYANY chgna dashnamur parapelu? Joi Jordinsony pederov kbzi glxit(arden karas xndas)</p>
+    <p>Type O Negative: ays gruppan stexcvele nra hamar vor asvi dzez LILIT ASATRYAN gnaceq dashnamur parapelu</p>
+    <p>Slipknot: humorners prcan dra hamar prosty kasem: LILIT ASATRYAN gnaceq dashnamur prarpelu</p>
+  </section>
+</div>
+
+<script>
+  // ==== УПРАВЛЕНИЕ ВИДИМОСТЬЮ РАЗДЕЛОВ ====
+  const buttons = document.querySelectorAll('nav button');
+  const sections = {
+    snake: document.getElementById('snake-game'),
+    piano: document.getElementById('piano-game'),
+    guitar: document.getElementById('guitar-game'),
+    clicker: document.getElementById('clicker-game'),
+    interface: document.getElementById('interface-choice'),
+    jokes: document.getElementById('jokes'),
+  };
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const game = btn.getAttribute('data-game');
+      for (const key in sections) {
+        if (key === game) {
+          sections[key].classList.remove('hidden');
+        } else {
+          sections[key].classList.add('hidden');
+        }
+      }
+    });
+  });
+
+  // ================= ЗМЕЙКА =================
+  const canvas = document.getElementById('snake-canvas');
+  const ctx = canvas.getContext('2d');
+  const gridSize = 16;
+  let snake = [{x: 8, y: 8}];
+  let food = {x: 0, y: 0};
+  let direction = {x: 0, y: 0};
+  let score = 0;
+  let gameInterval = null;
+  let isPaused = false;
+
+  function placeFood() {
+    food.x = Math.floor(Math.random() * (canvas.width / gridSize));
+    food.y = Math.floor(Math.random() * (canvas.height / gridSize));
+  }
+
+  function draw() {
+    ctx.fillStyle = '#110011';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw food
+    ctx.fillStyle = '#ff3366';
+    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+
+    // Draw snake
+    ctx.fillStyle = '#ff99aa';
+    snake.forEach((segment, i) => {
+      ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize-1, gridSize-1);
+    });
+  }
+
+  function update() {
+    if (isPaused) return;
+    let head = {...snake[0]};
+    head.x += direction.x;
+    head.y += direction.y;
+
+    // Wrap around edges
+    if (head.x < 0) head.x = canvas.width / gridSize -1;
+    if (head.x >= canvas.width / gridSize) head.x = 0;
+    if (head.y < 0) head.y = canvas.height / gridSize -1;
+    if (head.y >= canvas.height / gridSize) head.y = 0;
+
+    // Check collision with self
+    for(let i=0; i<snake.length; i++) {
+      if (snake[i].x === head.x && snake[i].y === head.y) {
+        stopGame();
+        alert("heriqa xaxas gna dashnamur parapi");
+        resetGame();
+        return;
+      }
+    }
+
+    snake.unshift(head);
+
+    // Check food
+    if (head.x === food.x && head.y === food.y) {
+      score++;
+      document.getElementById('snake-score').textContent = `Score: ${score}`;
+      placeFood();
+    } else {
+      snake.pop();
+    }
+
+    draw();
+  }
+
+  function startGame() {
+    if (gameInterval) clearInterval(gameInterval);
+    if(direction.x === 0 && direction.y === 0) {
+      direction.x = 1; // start moving right
+    }
+    isPaused = false;
+    gameInterval = setInterval(update, 100);
+  }
+
+  function pauseGame() {
+    isPaused = !isPaused;
+  }
+
+  function resetGame() {
+    snake = [{x: 8, y: 8}];
+    direction = {x: 0, y: 0};
+    score = 0;
+    document.getElementById('snake-score').textContent = `Score: ${score}`;
+    placeFood();
+    draw();
+  }
+
+  document.getElementById('snake-start').onclick = startGame;
+  document.getElementById('snake-pause').onclick = pauseGame;
+  document.getElementById('snake-reset').onclick = () => {
+    clearInterval(gameInterval);
+    resetGame();
+  };
+
+  window.addEventListener('keydown', e => {
+    switch(e.key) {
+      case 'ArrowUp': if(direction.y !== 1) direction = {x: 0, y: -1}; break;
+      case 'ArrowDown': if(direction.y !== -1) direction = {x: 0, y: 1}; break;
+      case 'ArrowLeft': if(direction.x !== 1) direction = {x: -1, y: 0}; break;
+      case 'ArrowRight': if(direction.x !== -1) direction = {x: 1, y: 0}; break;
+    }
+  });
+
+  resetGame();
+
+  // ================= ПИАНИНО =================
+  const pianoKeys = [
+    {note: 'C', key: 'A', freq: 261.63},
+    {note: 'C#', key: 'W', freq: 277.18, black: true},
+    {note: 'D', key: 'S', freq: 293.66},
+    {note: 'D#', key: 'E', freq: 311.13, black: true},
+    {note: 'E', key: 'D', freq: 329.63},
+    {note: 'F', key: 'F', freq: 349.23},
+    {note: 'F#', key: 'T', freq: 369.99, black: true},
+    {note: 'G', key: 'G', freq: 392.00},
+    {note: 'G#', key: 'Y', freq: 415.30, black: true},
+    {note: 'A', key: 'H', freq: 440.00},
+    {note: 'A#', key: 'U', freq: 466.16, black: true},
+    {note: 'B', key: 'J', freq: 493.88}
+  ];
+
+  const pianoKeysContainer = document.getElementById('piano-keys');
+
+  // Создаем клавиши
+  pianoKeys.forEach((k, i) => {
+    const key = document.createElement('div');
+    key.classList.add('piano-key');
+    if(k.black) {
+      key.classList.add('black');
+      key.style.left = `${40 * i - 14}px`;
+    }
+    key.dataset.freq = k.freq;
+    key.dataset.note = k.note;
+    key.dataset.key = k.key;
+    key.textContent = k.key;
+    pianoKeysContainer.appendChild(key);
+  });
+
+  // Аудиоконтекст
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioCtx();
+
+  function playTone(freq) {
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    oscillator.type = 'square';
+    oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.5);
+  }
+
+  pianoKeysContainer.addEventListener('mousedown', e => {
+    if(e.target.classList.contains('piano-key')) {
+      playTone(Number(e.target.dataset.freq));
+      e.target.classList.add('active');
+    }
+  });
+  pianoKeysContainer.addEventListener('mouseup', e => {
+    if(e.target.classList.contains('piano-key')) {
+      e.target.classList.remove('active');
+    }
+  });
+
+  window.addEventListener('keydown', e => {
+    const key = e.key.toUpperCase();
+    const pianoKey = pianoKeysContainer.querySelector(`.piano-key[data-key="${key}"]`);
+    if(pianoKey) {
+      playTone(Number(pianoKey.dataset.freq));
+      pianoKey.classList.add('active');
+      setTimeout(() => pianoKey.classList.remove('active'), 200);
+    }
+  });
+
+  // ================= ГИТАРА =================
+  const guitarChords = {
+    electric: 'E5 power chord riff 🔥',
+    bass: 'Slap bass groove 🤘',
+    acoustic: 'Soft ballad strum 🎸',
+  };
+
+  const guitarButtons = document.querySelectorAll('.guitar-btn');
+  const guitarChordDisplay = document.getElementById('guitar-chord');
+  let selectedGuitar = 'electric';
+
+  guitarButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedGuitar = btn.dataset.type;
+      guitarChordDisplay.textContent = `Selected: ${selectedGuitar.toUpperCase()} - ${guitarChords[selectedGuitar]}`;
+    });
+  });
+
+  document.getElementById('play-chord').addEventListener('click', () => {
+    alert(`ape du gitar chunes inches uzum nvages`);
+  });
+
+  // ================= КЛИКЕР =================
+  let clickerScore = 0;
+  const clickerBtn = document.getElementById('clicker-button');
+  const clickerScoreDisplay = document.getElementById('clicker-score');
+
+  clickerBtn.addEventListener('click', () => {
+    clickerScore++;
+    clickerScoreDisplay.textContent = `Очки: ${clickerScore}`;
+  });
+
+  // ================= ВЫБОР ИНТЕРФЕЙСА =================
+  const themes = {
+    dark: {
+      background: 'linear-gradient(135deg, #23074d, #cc5333)',
+      textColor: '#ffd6d6',
+      buttonBg: '#ff3366',
+      buttonHover: '#ff6699'
+    },
+    light: {
+      background: 'linear-gradient(135deg, #eee, #ddd)',
+      textColor: '#330011',
+      buttonBg: '#cc3366',
+      buttonHover: '#aa2244'
+    },
+    neon: {
+      background: 'radial-gradient(circle at center, #ff00ff, #330033)',
+      textColor: '#ff66ff',
+      buttonBg: '#ff00ff',
+      buttonHover: '#ff66ff'
+    }
+  };
+
+  document.querySelectorAll('#interface-choice button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.dataset.theme;
+      const t = themes[theme];
+      document.body.style.background = t.background;
+      document.body.style.color = t.textColor;
+      document.querySelectorAll('nav button').forEach(b => {
+        b.style.background = t.buttonBg;
+        b.style.boxShadow = `0 0 10px ${t.buttonBg}`;
+      });
+      document.querySelectorAll('nav button:hover').forEach(b => {
+        b.style.background = t.buttonHover;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+
